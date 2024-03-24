@@ -1,0 +1,24 @@
+.todo-filter {
+    background-color: var(--clr2bg);
+    padding: 1em;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.radio-sort{
+    padding: 10px;
+}
+
+.todo-filter form{
+    display: flex;
+    flex-direction: column;
+ 
+}
+.todo-filter form button{
+    width: fit-content;
+    align-self: center;
+    
+    margin-top: 10px;
+
+}

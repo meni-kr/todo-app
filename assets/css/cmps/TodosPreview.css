@@ -1,0 +1,42 @@
+.todo-preview {
+    text-align: center;
+    padding: 0.3em;
+    display: flex;
+    align-items: center;
+    /* flex-direction: column; */
+}
+
+.todo-preview-text li {
+    display: flex;
+    flex-flow: row;
+}
+
+.todo-preview-text li label {
+    position: relative;
+    width: max-content;
+    padding-inline-start: 1em;
+    transition: .6s;
+}
+
+.todo-preview-text li::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 0;
+    border-block-start: 1px solid black;
+    transition: .4s;
+}
+
+/* .todo-preview-text li input{
+    position: absolute;
+    left: 0;
+} */
+
+.todo-preview-text li input:checked+label {
+    opacity: .3;
+}
+
+.todo-preview-text li input:checked+label::before {
+    width: calc(100% -1em + 3px);
+}
