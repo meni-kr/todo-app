@@ -85,6 +85,7 @@ function _createTodos() {
 function _createTodo() {
     const todo = getEmptyTodo()
     todo._id = utilService.makeId()
+    todo.creatAt = Date.now()
     todo.txt = utilService.makeLorem(2)
     return todo
 }

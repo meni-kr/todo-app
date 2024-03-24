@@ -1,3 +1,4 @@
+const { Link } = ReactRouterDOM
 
 import { TodoPreview } from "./TodoPreview.jsx"
 
@@ -14,6 +15,8 @@ export function TodoList({ todos,onRemoveTodo,onCheckBox }) {
                     <button onClick={() => {
                         // onEditTodo(todo)
                     }}>Edit</button>
+                    <Link to={`/todo/${todo._id}`}><button>Details</button></Link>
+                    
                 </div>
             </li>
         )}
