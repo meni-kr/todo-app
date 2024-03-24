@@ -1,11 +1,11 @@
 const { useState, useEffect } = React
 const { useSelector, useDispatch } = ReactRedux
 import { userService } from '../services/user.service.js'
-import { SET_USER } from '../store/store.js'
+import { SET_USER } from '../store/reducers/user.reducer.js'
 import { updateUser } from '../store/actions/user.actions.js'
 
 export function UserProfile() {
-    const loggedInUser = useSelector((storeState) => storeState.loggedInUser)
+    const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
     const [userDetails, setUserDetails] = useState(null)
    
 

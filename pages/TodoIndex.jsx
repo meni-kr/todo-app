@@ -5,7 +5,7 @@ import { todoService } from '../services/todo.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { loadTodos,removeTodo,saveTodo,checkTodo } from '../store/actions/todo.actions.js'
-import { LOADING_IS_SHOWN ,SET_FILTER_BY} from '../store/store.js'
+import { SET_FILTER_BY } from '../store/reducers/todo.reducer.js'
 
 import { TodoFilter } from '../cmps/TodoFilter.jsx'
 import { TodoAdd } from '../cmps/TodoAdd.jsx'
@@ -16,8 +16,8 @@ import { Loading } from '../cmps/Loading.jsx'
 export function TodoIndex() {
     const dispatch = useDispatch()
 
-    const todos = useSelector(storeState => storeState.todos)
-    const filterBy = useSelector((storeState) => storeState.filterBy)
+    const todos = useSelector(storeState => storeState.todoModule.todos)
+    const filterBy = useSelector((storeState) => storeState.todoModule.filterBy)
 
     const [sortBy, setSort] = useState('time')
     // const count = useSelector(storeState => storeState.checkedTodoCount)

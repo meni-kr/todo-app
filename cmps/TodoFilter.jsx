@@ -6,7 +6,7 @@ import { TodoSort } from "./TodoSort.jsx"
 
 export function TodoFilter({onSetFilter,onSetSort}){
     const [filterBy, setFilterBy] = useState(todoService.getDefaultFilter())
-    const debouncedSetFilterRef = useRef(utilService.debounce(onSetFilter, 300))
+    const debouncedSetFilterRef = useRef(utilService.debounce(onSetFilter, 500))
 
     useEffect(() => {
         debouncedSetFilterRef.current(filterBy)

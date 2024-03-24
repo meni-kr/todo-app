@@ -7,6 +7,7 @@ export function TodoList({ todos, onRemoveTodo, onCheckBox ,onEditTodo}) {
 
     const [isEdit, setIsEdit] = useState(false)
     const [todoToEdit, setTodoToEdit] = useState({ txt: '' })
+    
     function onClickEditTodo(todo){
         setTodoToEdit(PrevTodo=>({...PrevTodo, ...todo}))
         setIsEdit(true)
