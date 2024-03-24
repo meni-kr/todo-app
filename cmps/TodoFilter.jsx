@@ -53,14 +53,7 @@ export function TodoFilter({onSetFilter,onSetSort}){
                         value={filterBy.txt}
                         onChange={handleChange}
                     />
-                    <label htmlFor="pageIdx">Page:</label>
-                    <input type="number"
-                        id="pageIdx"
-                        name="pageIdx"
-                        placeholder="0"
-                        value={filterBy.pageIdx}
-                        onChange={handleChange}
-                    />
+                    
                 </div>
                 <button>Submit</button>
             </form> 

@@ -4,7 +4,7 @@ import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 
 const STORAGE_KEY = 'todoDB'
-const PAGE_SIZE = 8
+
 export const todoService = {
     query,
     getById,
@@ -27,10 +27,7 @@ function query(filterBy = { txt: '', isDone: 'all', pageIdx: 0 }) {
             if (filterBy.isDone !== 'all') {
                 todos = todos.filter((todo) => (filterBy.isDone === 'done' ? todo.isDone : !todo.isDone))
             }
-            if (filterBy.pageIdx !== undefined) {
-                const startIdx = filterBy.pageIdx * PAGE_SIZE
-                todos = todos.slice(startIdx, PAGE_SIZE + startIdx)
-            }
+           
             return todos
         })
 
