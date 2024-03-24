@@ -14,3 +14,13 @@
     background-color: var(--clr1bg);
     padding: 0.65em;
 }
+
+.edit-todo-container{
+    background-color:var(--clr1);
+    color: var(--clr1bg);
+    padding: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate:-50% -50% ;
+}

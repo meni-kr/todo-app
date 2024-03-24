@@ -10,7 +10,9 @@ export const userService = {
     getById,
     getLoggedinUser,
     updateScore,
-    getEmptyCredentials
+    getEmptyCredentials,
+    updateUserPreffs,
+    addActivity
 }
 
 
@@ -28,8 +30,9 @@ function login({ username, password }) {
         })
 }
 
-function signup({ username, password, fullname }) {
-    const user = { username, password, fullname, score: 10000 }
+function signup(newUser) {
+    const userToAdd = getEmptyCredentials()
+    const user = { ...userToAdd,...newUser}
     return storageService.post(STORAGE_KEY, user)
         .then(_setLoggedinUser)
 }
@@ -59,9 +62,46 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-    const userToSave = { _id: user._id, fullname: user.fullname, score: user.score }
+    const userToSave = { _id: user._id, fullname: user.fullname, pref: user.pref }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
     return userToSave
+}
+
+function updateUserPreffs(userToUpdate) {
+    const loggedinUserId = getLoggedinUser()._id
+    return getById(loggedinUserId)
+        .then(user => {
+            user.fullname = userToUpdate.fullname
+            user.pref.color = userToUpdate.color
+            user.pref.bgColor = userToUpdate.bgColor
+            return storageService.put(STORAGE_KEY, user)
+                .then((savedUser) => {
+                    _setLoggedinUser(savedUser)
+                    return savedUser
+                })
+        })
+}
+
+function addActivity(type, todoId) {
+    const activity = {
+        txt: `${type} a Todo with id : ${todoId}`,
+        at: Date.now()
+    }
+    const loggedinUser = getLoggedinUser()
+    if (!loggedinUser) return
+    return getById(loggedinUser._id)
+        .then(user => {
+            if (!user.activities) user.activities = []
+            user.activities.unshift(activity)
+            return user
+        })
+        .then(userToUpdate => {
+            return storageService.put(STORAGE_KEY, userToUpdate)
+                .then((savedUser) => {
+                    _setLoggedinUser(savedUser)
+                    return savedUser
+                })
+        })
 }
 
 
@@ -69,7 +109,12 @@ function getEmptyCredentials() {
     return {
         username: '',
         password: '',
-        fullname: ''
+        fullname: '',
+        activities:[],
+        pref:{
+            color:'',
+            bgColor:''
+        }
     }
 }
 

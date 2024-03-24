@@ -6,6 +6,7 @@ const { Provider } = ReactRedux
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
 import { TodoDetails } from './pages/TodoDetails.jsx'
+import { UserProfile } from './pages/UserProfile.jsx'
 
 import { HomePage } from './pages/HomePage.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
@@ -27,6 +28,7 @@ export class App extends React.Component {
                                 <Route element={<AboutUs />} path="/about" />
                                 <Route element={<TodoIndex />} path="/todo" />
                                 <Route element={<TodoDetails />} path={'/todo/:id'} />
+                                <Route element={<UserProfile />} path={'/user'} />
                             </Routes>
                         </main>
                         <AppFooter />

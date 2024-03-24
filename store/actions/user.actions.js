@@ -12,6 +12,17 @@ export function login(credentials) {
         })
 }
 
+
+export function updateUser(userToUpdate) {
+    return userService.updateUserPreffs(userToUpdate)
+        .then((updatedUser) => {
+            store.dispatch({
+                type: SET_USER,
+                user: updatedUser,
+            })
+        })
+}
+
 export function signup(credentials) {
     return userService.signup(credentials)
         .then((user) => {

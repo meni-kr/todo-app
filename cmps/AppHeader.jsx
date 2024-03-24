@@ -32,15 +32,30 @@ export function AppHeader() {
       });
   }
 
+  function getStyleByUser() {
+    const prefs = {
+      color: '',
+      backgroundColor: ''
+    }
+
+    if (user && user.pref) {
+ 
+      prefs.color = user.pref.color
+      prefs.backgroundColor = user.pref.bgColor
+    }
+
+    return prefs
+  }
+
   return (
-    <section className="header-container">
-      <header className="app-header full main-layout">
+    <section  className="header-container">
+      <header style={getStyleByUser()} className="app-header full main-layout">
         <h1>Todo app</h1>
         <nav className="app-nav">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/todo">Todos</NavLink>
-          {/* {<NavLink to="/user">Profile</NavLink>} */}
+          {<NavLink to="/user">Profile</NavLink>}
           {/* {user.isAdmin && <NavLink to="/admin">Admin</NavLink>} */}
         </nav>
 

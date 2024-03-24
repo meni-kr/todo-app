@@ -25,6 +25,7 @@ const initialState = {
     isLoadingShown: false,
     loggedInUser: userService.getLoggedinUser(),
     filterBy: { txt: '', isDone: 'all', pageIdx: 0 }
+    
 }
 
 

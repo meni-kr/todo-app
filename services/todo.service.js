@@ -44,17 +44,24 @@ function getById(todoId) {
 
 function remove(todoId) {
     // return Promise.reject('Not now!')
-    return storageService.remove(STORAGE_KEY, todoId)
+    return storageService.remove(STORAGE_KEY, todoId).then(() => {
+        userService.addActivity('Removed', todoId)
+    })
 }
 
 
 function save(todo) {
     if (todo._id) {
-        return storageService.put(STORAGE_KEY, todo)
+        return storageService.put(STORAGE_KEY, todo).then(savedTodo => {
+            userService.addActivity('Updated', savedTodo._id)
+            return savedTodo
+        })
     } else {
-        // when switching to backend - remove the next line
-        todo.creatAt = Date.now()
-        return storageService.post(STORAGE_KEY, todo)
+        todo.createdAt = Date.now()
+        return storageService.post(STORAGE_KEY, todo).then((savedTodo) => {
+            userService.addActivity('Added', savedTodo._id)
+            return savedTodo
+        })
     }
 }
 

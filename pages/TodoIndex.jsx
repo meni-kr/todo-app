@@ -77,6 +77,16 @@ function onRemoveTodo(todoId){
             })
     }
 
+    function onEditTodo(todoToSave) {
+        saveTodo(todoToSave)
+            .then((savedTodo) => {
+                showSuccessMsg(`Todo added (id: ${savedTodo._id})`)
+            })
+            .catch(err => {
+                showErrorMsg('Cannot add todo')
+            })
+    }
+
     function onCheckBox(todo) {
         checkTodo(todo)
         .then((savedTodo) => {
@@ -98,7 +108,12 @@ function onRemoveTodo(todoId){
                 <TodoFilter onSetFilter={setFilter} onSetSort={onSetSort}/>
                 <TodoAdd onAddTodo={onAddTodo}/>
                 
-                <TodoList todos={todosForDisplay()} onRemoveTodo={onRemoveTodo} onCheckBox={onCheckBox}/>
+                <TodoList 
+                todos={todosForDisplay()} 
+                onRemoveTodo={onRemoveTodo} 
+                onCheckBox={onCheckBox}
+                onEditTodo={onEditTodo}
+                />
             </main>
         </div>
     )
